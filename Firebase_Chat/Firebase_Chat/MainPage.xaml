@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Firebase_Chat.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Firebase chat" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+
+
+        <Button 
+            Margin="0,250"
+            Text="Start" 
+            TextColor="White"
+            WidthRequest="200" 
+            HorizontalOptions="Center"
+            BackgroundColor="DodgerBlue"
+            Clicked="Button_Clicked"/>
+
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Firebase_Chat.Views.HubPage">
+
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame 
+            BackgroundColor="LightGray" 
+            HasShadow="False"
+            CornerRadius="15"
+            Padding="10"
+            HorizontalOptions="Center">
+            
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </Frame.GestureRecognizers>
+            
+            <Grid WidthRequest="350">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--MUDAR PARA CIRCLE IMAGE PQ PRECISA REMOVER O CLICK-->
+                <ImageButton
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    BackgroundColor="SkyBlue"
+                    HeightRequest="80"
+                    WidthRequest="80"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    CornerRadius="40"
+                    IsEnabled="False"/>
+
+                <Label 
+                    x:Name="name"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Lucia"
+                    TextColor="DarkSlateGray"
+                    FontSize="Medium"/>
+
+                <Label 
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="Te convidou para uma conversa"
+                    TextColor="DarkSlateGray"
+                    FontSize="Medium"
+                    FontAttributes="Bold"/>
+
+            </Grid>
+        </Frame>
+
+    </Grid>
+</ContentPage>
