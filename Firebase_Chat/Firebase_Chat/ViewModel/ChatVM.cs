@@ -17,6 +17,7 @@ namespace Firebase_Chat.ViewModel
         public ObservableCollection<MessageBase> Messages { get; private set; }
         public string Author { get; set; }
         public string GroupKey { get; set; }
+        public IDisposable Subscription { get; set; }
 
         SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
@@ -28,7 +29,7 @@ namespace Firebase_Chat.ViewModel
 
         public ChatVM()
         {
-            GroupKey = "NovaConversa";
+            //GroupKey = "NovaConversa";
             Messages = new ObservableCollection<MessageBase>();
         }
         public async void InitMessages()
@@ -67,7 +68,7 @@ namespace Firebase_Chat.ViewModel
 
             var observable = FirebaseService.firebase.Child("Chat").Child(GroupKey).AsObservable<InboundMessage>();
 
-            var subscription = observable
+            Subscription = observable
             .Where(f => !string.IsNullOrEmpty(f.Key)
             && f.Object?.Author != Author
             && !string.IsNullOrEmpty(f.Object.Content))

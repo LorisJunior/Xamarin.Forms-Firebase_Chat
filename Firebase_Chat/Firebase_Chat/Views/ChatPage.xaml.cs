@@ -1,12 +1,6 @@
-﻿using Firebase.Database.Query;
-using Firebase_Chat.Models;
-using Firebase_Chat.Services;
+﻿using Firebase_Chat.Helpers;
 using Firebase_Chat.ViewModel;
 using System;
-using System.Collections.ObjectModel;
-using System.Reactive.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +10,6 @@ namespace Firebase_Chat.Views
     public partial class ChatPage : ContentPage
     {
         ChatVM Chat;
-
         public ChatPage()
         {
             InitializeComponent();
@@ -29,7 +22,10 @@ namespace Firebase_Chat.Views
         }
         private void Messages_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            MessageList.ScrollTo(Chat.Messages.Count - 1);
+            if (Chat.Messages.Count > 0)
+            {
+                MessageList.ScrollTo(Chat.Messages.Count - 1);
+            }
         }
         protected override void OnAppearing()
         {
@@ -39,11 +35,23 @@ namespace Firebase_Chat.Views
 
             Chat.InitSubscription();
 
+            //Ao iniciar vai até a ultima mensagem recebida
             if (Chat.Messages.Count > 0)
             {
                 MessageList.ScrollTo(Chat.Messages.Count - 1);
             }
         }
-       
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            //Limpa a lista de mensagens
+            Chat.Messages.SafeClear();
+
+            //Deixa de observar as atualizações desta conversa
+            Chat.Subscription.Dispose();
+        }
+
     }
 }
